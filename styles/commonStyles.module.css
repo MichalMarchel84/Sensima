@@ -1,0 +1,167 @@
+.header {
+    font-size: 2rem;
+    padding: 2rem 1rem;
+    color: white;
+    text-shadow: 0 0 3px #00f7ff;
+}
+
+.slideContent {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5rem;
+    color: #fff5e5;
+
+    .description {
+        padding-bottom: 2rem;
+    }
+
+    .properties {
+        display: flex;
+        flex-direction: column;
+        margin-left: 1rem;
+
+        .property {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            color: white;
+            padding-bottom: 1rem;
+            font-size: 1.2rem;
+            text-align: left;
+
+            .propertyContainer {
+                color: #fff5e5;
+
+                .propertyDetails {
+                    color: white;
+                    font-size: 1rem;
+                    padding-top: 0.3rem;
+                }
+            }
+
+            .icon {
+                display: flex;
+                justify-content: center;
+                font-size: 2rem;
+                color: white;
+                min-width: 3rem;
+                margin-right: 1rem;
+                filter: drop-shadow(0 0 3px #00f7ff);
+            }
+
+            @media only screen and (max-width: 640px) {
+                padding-bottom: 1rem;
+            }
+        }
+    }
+}
+
+.link {
+    text-decoration: underline;
+    color: white;
+}
+
+.link:hover {
+    text-shadow: 0 0 3px #00f7ff;
+}
+
+.highlight {
+    color: white;
+    text-shadow: 0 0 3px #00f7ff;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+    color: #fff5e5;
+    text-align: left;
+
+    .descriptionSection {
+        font-size: 1.3rem;
+        padding: 1rem;
+
+        @media only screen and (max-width: 640px) {
+            padding: 1rem 0;
+        }
+    }
+}
+
+.sectionItem {
+    padding: 0 0 0.5rem;
+}
+
+.configRow {
+    padding: 0.5rem 0;
+    font-family: monospace;
+    font-size: 1.3rem;
+
+    .paramName {
+        color: limegreen;
+    }
+
+    .paramValue {
+        color: white;
+    }
+}
+
+.diagramContainer {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+
+    .diagram {
+        width: 22rem;
+        padding-right: 2rem;
+
+        @media only screen and (max-width: 1000px) {
+            padding-right: 0;
+        }
+
+        @media only screen and (max-width: 640px) {
+            width: 100%;
+            padding-right: 0;
+        }
+    }
+
+    @media only screen and (max-width: 1000px) {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem 0;
+    }
+}
+
+.image {
+    padding: 1rem;
+    max-width: 100%;
+}
+
+.code {
+    font-family: monospace;
+    font-size: 1.2rem;
+    color: white;
+    padding: 1rem 0;
+
+    .section {
+        padding-left: 1rem;
+    }
+
+    .string {
+        color: limegreen;
+    }
+
+    .keyword {
+        color: #ff9813;
+    }
+
+    .declaration {
+        color: #c589e8;
+    }
+
+    .function {
+        color: #ffda80;
+    }
+}
