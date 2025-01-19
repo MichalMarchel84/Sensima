@@ -2,8 +2,34 @@ import { faEnvelope, faHandPointRight, faPhone } from '@fortawesome/free-solid-s
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styles from '../styles/Home.module.css';
 import { faSquareFacebook } from '@fortawesome/free-brands-svg-icons';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const [formValid, setFormValid] = useState(false);
+
+    const validateForm = () =>{
+        const emailValid = email.toLowerCase()
+        .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+        const messageValid = message.length > 0;
+        setFormValid(!!emailValid && messageValid);
+    }
+
+    const onEmailChange = (ev: any) => {
+        setEmail(ev.target.value);
+    }
+
+    const onMessageChange = (ev: any) => {
+        setMessage(ev.target.value);
+    }
+
+    useEffect(() => {
+        validateForm();
+    }, [email, message]);
+
     return (
         <div className={styles.mainContainer}>
             <div className={styles.navBar}>
@@ -12,7 +38,7 @@ export default function Home() {
                 <a className={styles.navBarItem} href='#offer'>Oferta</a>
                 <a className={styles.navBarItem} href='#gallery'>Galeria</a>
                 <a className={styles.navBarItem} href='#pricing'>Cennik</a>
-                <a className={styles.navBarItem} href='#'>Kontakt</a>
+                <a className={styles.navBarItem} href='#contact'>Kontakt</a>
                 <a className={styles.navFacebook} href="https://www.facebook.com/pages/Sensima-gabinet-psychologiczny/336614763133838" target='_blank' rel='noopener noreferrer'>
                     {/* @ts-ignore icon prop error*/}
                     <FontAwesomeIcon icon={faSquareFacebook} />
@@ -24,12 +50,12 @@ export default function Home() {
                     <div>
                         <a style={{color: '#d4e800'}} href="tel:+48602672952" className={styles.contact}>
                             <FontAwesomeIcon icon={faPhone} className={styles.contactIcon}/>
-                            +48 602-672-952
+                            +48 602 672 952
                         </a>
-                        <a style={{color: '#d4e800'}} href="#" className={styles.contact}>
+                        <div style={{color: '#d4e800'}} className={styles.contact}>
                             <FontAwesomeIcon icon={faEnvelope} className={styles.contactIcon}/>
                             gabinet@sensima.com.pl
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -40,12 +66,14 @@ export default function Home() {
                 <div className={`${styles.firstSlideText} ${styles.size2}`}>
                     gabinet psychologiczny
                 </div>
-                <a href='#' className={styles.locationButton}>
+                <a href='#contact' className={styles.locationButton}>
                     <FontAwesomeIcon icon={faHandPointRight} className={styles.locationIcon}/>
                     GABINET W URSUSIE
                 </a>
                 <div className={styles.divider}></div>
-                <div className={`${styles.firstSlideText} ${styles.size2}`}>ul. Jana Olbrachta 64</div>
+                <div className={`${styles.firstSlideText} ${styles.size2}`}>
+                    ul. Dzieci Warszawy 26
+                </div>
             </div>
             <div className={styles.firstHeader}>
                 Zapraszam na konsultację,<br/>
@@ -123,7 +151,6 @@ export default function Home() {
                     <iframe
                         frameBorder="0"
                         scrolling="no"
-                        allowTransparency
                         data-id="y5c3lrqvpt"
                         src="https://widgets.znanylekarz.pl/doctor/widget/big/magdalena-zbikowska?customUtm=null&amp;id=y5c3lrqvpt&amp;header=null&amp;content=null&amp;fullwidth=null&amp;referer=https%3A%2F%2Fsensima.com.pl%2F&amp;hide_branding=true&amp;widget_position=bottom&amp;opinion=false&amp;saasonly=false"
                         style={{border: 'none', overflow: 'hidden', width: '100%', height: '268px'}}
@@ -213,6 +240,45 @@ export default function Home() {
                     Płatność gotówką lub kartą<br/>
                     W przypadku terapii on-line, proszę dokonywać wpłaty na konto o numerze 26 1600 1462 1888 4140 0000 0001
                 </div>
+            </div>
+            <div className={styles.contactContainer} id="contact">
+                <div className={styles.contactHeader}>
+                    Kontakt
+                </div>
+                <div className={styles.contactLogoContainer}>
+                    <div className={styles.contactLogo}>
+                        <img src="/img/logo-sensima.svg"/>
+                    </div>
+                    <div className={styles.contactSensima}>Sensima</div>
+                </div>
+                <div className={styles.contactDetails}>
+                    ul. Dzieci Warszawy 26 m 12<br/>
+                    02-495 Warszawa<br/>
+                    tel: 602-672-952<br/>
+                    gabinet@sensima.com.pl
+                </div>
+            </div>
+            <div className={styles.map}>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4891.396766481433!2d20.906045!3d52.194355!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa7b92582c8851c7!2sSensima!5e0!3m2!1spl!2spl!4v1548263616459"
+                    frameBorder="0"
+                    allowFullScreen
+                    width="100%"
+                    height="100%"
+                />
+            </div>
+            <div className={styles.contactFormContainer}>
+                <form id="contactForm" className={styles.contactForm} onSubmit={(ev: any) => {ev.preventDefault(); alert('Jeszcze nie otwarte ;)')}}>
+                {/* <form id="contactForm" className={styles.contactForm} action="https://formsubmit.co/michal.marchel84@gmail.com" method="POST"> */}
+                    <div className={styles.contactFormHeader}>
+                        Formularz kontaktowy
+                    </div>
+                    Email:
+                    <input name='email' type='email' className={styles.contactFormEntity} onInput={onEmailChange} value={email}/>
+                    Wiadomość:
+                    <textarea name='message' form='contactForm' rows={10} className={styles.contactFormEntity} onInput={onMessageChange} value={message}></textarea>
+                    <input type='submit' value='Wyślij' className={`${styles.contactFormSubmit} ${formValid ? styles.buttonActive : ''}`} disabled={!formValid}/>
+                </form>
             </div>
         </div>
     );

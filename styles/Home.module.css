@@ -385,4 +385,94 @@
             text-shadow: 1px 1px 9px rgba(81, 4, 25, 0.85);
         }
     }
+
+    .contactContainer {
+        color: #312f2f;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem;
+
+        .contactHeader {
+            font-size: 2.5rem;
+            padding: 2rem;
+        }
+
+        .contactLogoContainer {
+            color: #eac7a4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            .contactLogo {
+                font-size: 5rem;
+                display: flex !important;
+                justify-content: center;
+            }
+
+            .contactSensima {
+                font-size: 2rem;
+                padding: 1rem;
+            }
+        }
+
+        .contactDetails {
+            font-size: 1.5rem;
+            text-align: center;
+        }
+    }
+
+    .map {
+        min-height: 40rem;
+        flex-grow: 10;
+        padding-top: 2rem;
+    }
+
+    .contactFormContainer {
+        background-image: url('/img/bg-01.png');
+        flex-grow: 10;
+        background-size: cover;
+        background-position: center center;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        color: #f1f7ed;
+        margin-top: 2rem;
+        padding: 2rem;
+
+        .contactFormHeader {
+            font-size: 2rem;
+            margin: 2rem 0;
+        }
+
+        .contactForm {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+            max-width: 40rem;
+            font-size: 1.2rem;
+
+            .contactFormEntity {
+                width: 100%;
+                font-size: 1.5rem;
+                margin-bottom: 2rem;
+            }
+
+            .contactFormSubmit {
+                font-size: 1.5rem;
+                padding: 1rem 2rem;
+                border: none;
+            }
+
+            .buttonActive:hover {
+                background-color: #dadada;
+                cursor: pointer;
+            }
+        }
+    }
 }
