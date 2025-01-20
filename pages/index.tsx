@@ -268,8 +268,8 @@ export default function Home() {
                 />
             </div>
             <div className={styles.contactFormContainer}>
-                <form id="contactForm" className={styles.contactForm} onSubmit={(ev: any) => {ev.preventDefault(); alert('Jeszcze nie otwarte ;)')}}>
-                {/* <form id="contactForm" className={styles.contactForm} action="https://formsubmit.co/michal.marchel84@gmail.com" method="POST"> */}
+                {/* <form id="contactForm" className={styles.contactForm} onSubmit={(ev: any) => {ev.preventDefault(); alert('Jeszcze nie otwarte ;)')}}> */}
+                <form id="contactForm" className={styles.contactForm} action="https://formsubmit.co/sensimagabinet@gmail.com" method="POST">
                     <div className={styles.contactFormHeader}>
                         Formularz kontaktowy
                     </div>
