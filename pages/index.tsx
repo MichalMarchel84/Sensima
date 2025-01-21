@@ -8,6 +8,7 @@ export default function Home() {
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [formValid, setFormValid] = useState(false);
+    const [formSending, setFormSending] = useState(false);
 
     const validateForm = () =>{
         const emailValid = email.toLowerCase()
@@ -24,6 +25,32 @@ export default function Home() {
 
     const onMessageChange = (ev: any) => {
         setMessage(ev.target.value);
+    }
+
+    const onMessageSend = async (ev: any) => {
+        ev.preventDefault();
+        setFormSending(true);
+        const resp = await fetch(
+            'https://formsubmit.co/ajax/sensimagabinet@gmail.com',
+            {
+                method: 'POST',
+                body: JSON.stringify({
+                    email: email,
+                    message: message
+                }),
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        )
+        if (resp?.ok) {
+            alert('Wiadomość została wysłana');
+        } else {
+            alert('Nie udało się wysłać wiadomości. Spróbuj ponownie później lub napisz na gabinet@sensima.com.pl');
+        }
+        setEmail('');
+        setMessage('');
+        setFormSending(false);
     }
 
     useEffect(() => {
@@ -268,16 +295,40 @@ export default function Home() {
                 />
             </div>
             <div className={styles.contactFormContainer}>
-                {/* <form id="contactForm" className={styles.contactForm} onSubmit={(ev: any) => {ev.preventDefault(); alert('Jeszcze nie otwarte ;)')}}> */}
-                <form id="contactForm" className={styles.contactForm} action="https://formsubmit.co/sensimagabinet@gmail.com" method="POST">
+                <form id="contactForm" className={styles.contactForm} onSubmit={onMessageSend}>
                     <div className={styles.contactFormHeader}>
                         Formularz kontaktowy
                     </div>
                     Email:
-                    <input name='email' type='email' className={styles.contactFormEntity} onInput={onEmailChange} value={email}/>
+                    <input
+                        name='email'
+                        type='email'
+                        className={styles.contactFormEntity}
+                        onInput={onEmailChange}
+                        value={email}
+                        disabled={formSending}
+                    />
                     Wiadomość:
-                    <textarea name='message' form='contactForm' rows={10} className={styles.contactFormEntity} onInput={onMessageChange} value={message}></textarea>
-                    <input type='submit' value='Wyślij' className={`${styles.contactFormSubmit} ${formValid ? styles.buttonActive : ''}`} disabled={!formValid}/>
+                    <textarea
+                        name='message'
+                        form='contactForm'
+                        rows={10}
+                        className={styles.contactFormEntity}
+                        onInput={onMessageChange}
+                        value={message}
+                        disabled={formSending}
+                    />
+                    <div className={styles.submitButtonContainer}>
+                        <input
+                            type='submit'
+                            value='Wyślij'
+                            className={`${styles.contactFormSubmit} ${formValid ? styles.buttonActive : ''}`}
+                            disabled={!formValid || formSending}
+                        />
+                        {formSending &&
+                            <div className={styles.loader}></div>
+                        }
+                    </div>
                 </form>
             </div>
         </div>
